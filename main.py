@@ -28,7 +28,9 @@ def times_sep(s):
         if s[i].isdigit():times.append(int(s[i]))
         if s[i].isalpha():
             checking_pro = True
-    return elem, times
+        if s[i].isupper() and i == len(s)-1:
+            times.append(1)
+    return list(zip(elem, times))
     
 def coeff_sep(ele):
     d = {}
@@ -49,5 +51,9 @@ def checker(equation):
     stoichiometry = coeff_sep(reactants), coeff_sep(products)
 
     print(*stoichiometry, sep="\n")
+    for i in stoichiometry:
+        for j in i.keys():
+            print(times_sep(j))
 
 checker(test)
+# print(times_sep("H2O"))
